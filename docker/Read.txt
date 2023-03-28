@@ -1,0 +1,18 @@
+docker volume create kibana
+
+docker volume create elastic
+
+docker network ls
+
+docker run -d --restart always --network="docker_elastic" --name=apm-server --user=apm-server -p 8200:8200 --volume="$(pwd)/apm-server.docker.yml:/usr/share/apm-server/apm-server.yml:ro" docker.elastic.co/apm/apm-server:7.17.4 --strict.perms=false -e -E output.elasticsearch.hosts=["elasticsearch:9200"] -e -E output.elasticsearch.username="elastic" -e -E output.elasticsearch.password="5OGcUE4fpA8W"
+
+
+pip install elastic-apm
+
+from fastapi import FastAPI
+from elasticapm.contrib.starlette ElasticAPM
+
+app = FastAPI()
+app.add_middleware(ElasticAPM)
+
+

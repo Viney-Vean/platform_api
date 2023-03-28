@@ -1,0 +1,8 @@
+__pycache__
+app.egg-info
+venv
+/docker/Hyperledger/channel-artifacts/
+/docker/Hyperledger/config/
+/docker/Hyperledger/crypto-config/
+/docker/Hyperledger/data/
+/docker/Hyperledger/crypto-config/

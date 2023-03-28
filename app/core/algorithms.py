@@ -1,0 +1,1 @@
+ALGORITHM_HS256: str = "HS256"

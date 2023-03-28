@@ -1,0 +1,10 @@
+fastapi[all]
+sqlalchemy
+psycopg2
+pydantic
+jose
+passlib
+sentry-sdk
+emails
+bcrypt
+elastic-apm

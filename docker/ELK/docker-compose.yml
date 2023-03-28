@@ -1,0 +1,46 @@
+version: "3.0"
+services:
+  elasticsearch:
+    container_name: elastic
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+    environment:
+      - xpack.security.enabled=true
+      - xpack.security.authc.api_key.enabled=true
+      - xpack.security.http.ssl.enabled=true
+      - ELASTIC_PASSWORD=5OGcUE4fpA8W
+      - discovery.type=single-node
+    networks:
+      - elastic
+    ports:
+      - 9200:9200
+    restart: always
+    volumes:
+      - elastic:/usr/share/elasticsearch
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.17.6
+    environment:
+      #      by running this they will ask you to input password for login elastic
+      - ELASTICSEARCH_HOSTS=http://elastic:9200
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=5OGcUE4fpA8W
+      - XPACK_SECURITY_ENABLED=true
+    networks:
+      - elastic
+    depends_on:
+      - elasticsearch
+    ports:
+      - 5601:5601
+    restart: always
+    volumes:
+      - kibana:/usr/share/kibana
+networks:
+  elastic:
+    driver: bridge
+volumes:
+  elastic:
+    external: true
+  kibana:
+    external: true
+
+
